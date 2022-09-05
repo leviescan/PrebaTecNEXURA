@@ -1,0 +1,98 @@
+<div class="container">
+
+    <br><br><div class="columns is-centered">
+        <div class="column is-4">
+
+           <form class="box"  (ngSubmit)="updateEmpleado()" >
+            <div class="field">
+                <label class="label">Nombre</label>
+                <p class="control has-icons-left has-icons-right">
+                  <input class="input" type="text" id="nombre" [ngModelOptions]="{standalone: true}" [(ngModel)]="empleado.nombre" placeholder="Ingrese el nombre">
+                  <span class="icon is-small is-left">
+                    <i ><svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M15,14C12.33,14 7,15.33 7,18V20H23V18C23,15.33 17.67,14 15,14M15,12A4,4 0 0,0 19,8A4,4 0 0,0 15,4A4,4 0 0,0 11,8A4,4 0 0,0 15,12M5,13.28L7.45,14.77L6.8,11.96L9,10.08L6.11,9.83L5,7.19L3.87,9.83L1,10.08L3.18,11.96L2.5,14.77L5,13.28Z" />
+                    </svg></i>
+                  </span>
+                  <span class="icon is-small is-right">
+                    <i ><svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M0.41,13.41L6,19L7.41,17.58L1.83,12M22.24,5.58L11.66,16.17L7.5,12L6.07,13.41L11.66,19L23.66,7M18,7L16.59,5.58L10.24,11.93L11.66,13.34L18,7Z" />
+                    </svg></i>
+                  </span>
+                </p>
+              </div>
+
+              <div class="field">
+                <label class="label">Email</label>
+                <p class="control has-icons-left">
+                  <input class="input" type="text" id="email" [ngModelOptions]="{standalone: true}" [(ngModel)]="empleado.email" placeholder="Ingrese la email">
+                  <span class="icon is-small is-left">
+                    <i ><svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M18.25 22L15.5 19L16.66 17.82L18.25 19.41L21.84 15.82L23 17.23M19.5 3.5L18 2L16.5 3.5L15 2L13.5 3.5L12 2L10.5 3.5L9 2L7.5 3.5L6 2L4.5 3.5L3 2V22L4.5 20.5L6 22L7.5 20.5L9 22L10.5 20.5L12 22L13.26 20.74C13.09 20.18 13 19.59 13 19C13 18.32 13.12 17.64 13.34 17H6V15H14.53C15.67 13.73 17.29 13 19 13C19.68 13 20.36 13.12 21 13.34V2L19.5 3.5M18 13H6V11H18V13M18 9H6V7H18V9Z" />
+                    </svg></i>
+                  </span>
+                </p>
+              </div>
+
+              <div class="field" >
+                <label class="label">Sexo</label>
+                <div class="select" >
+                  <select id="sexo" [ngModelOptions]="{standalone: true}"[(ngModel)]="empleado.sexo" style="width:100vw ;">
+                    <option value="m"> Hombre</option>
+                    <option value="f"> Mujer</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field" >
+                <label class="label">Area</label>
+                <div class="select" >
+                  <select id="area_id" [ngModelOptions]="{standalone: true}"[(ngModel)]="empleado.area_id" style="width:100vw ;">
+                    <option value="1"> Administracion</option>
+                    <option value="2"> Docencia</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field">
+                <div class="control">
+                  <label class="checkbox">
+                    <input type="checkbox" value='1' (change)='0' id="boletin" [ngModelOptions]="{standalone: true}"[(ngModel)]="empleado.boletin"  >
+                    Desea recibir boletín?
+                  </label>
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label">Descripción</label>
+                <p class="control has-icons-left">
+                  <input class="input" type="text" id="drescripcion" [ngModelOptions]="{standalone: true}" [(ngModel)]="empleado.descripcion" placeholder="Ingrese descrpcion">
+                  <span class="icon is-small is-left">
+                    <i ><svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M15,3H19V0L24,5L19,10V7H15V3M21,11.94V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3H12.06C12,3.33 12,3.67 12,4A8,8 0 0,0 20,12C20.33,12 20.67,12 21,11.94M19,18L14.5,12L11,16.5L8.5,13.5L5,18H19Z" />
+                    </svg></i>
+                  </span>
+                </p>
+              </div>
+
+              <div class="field" >
+                <label class="label">Rol</label>
+                <div class="select" >
+                  <select id="area_id" [ngModelOptions]="{standalone: true}"[(ngModel)]="empleado.rol_id" style="width:100vw ;">
+                    <option value="1"> Administrador</option>
+                    <option value="2"> Profesor</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field" >
+                <p class="control">
+                  <button class="button is-success ">
+                    Actualizar
+                  </button>
+                </p>
+              </div>
+
+            </form>
+    </div>
+    </div>
+

@@ -1,0 +1,141 @@
+<div class="container is-fullwidth"><br><br>
+    <div class="box" style="width:65vw;" >
+      <h3 class="title is-3"> Crear mpleados </h3>
+  
+  <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzRequired>Username</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
+        <input nz-input formControlName="nombre" placeholder="Escribe un nombre diferente a Andres" />
+        <ng-template #userErrorTpl let-control>
+          <ng-container *ngIf="control.hasError('required')">Please input your username!</ng-container>
+          <ng-container *ngIf="control.hasError('duplicated')">The username is redundant!</ng-container>
+        </ng-template>
+      </nz-form-control>
+   </nz-form-item>
+  
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzRequired>E-mail</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzHasFeedback [nzErrorTip]="emailErrorTpl">
+        <input nz-input formControlName="email" placeholder="email" type="email" />
+        <ng-template #emailErrorTpl let-control>
+          <ng-container *ngIf="control.hasError('email')"> no es un email valido trata de nuevo!</ng-container>
+          <ng-container *ngIf="control.hasError('required')">Por favor ingresa tu email!</ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+  
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzRequired>Sexo</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzErrorTip="Please write something here!">
+        <nz-radio-group formControlName="sexo">
+          <label nz-radio nzValue="m">Masculino</label><br>
+          <label nz-radio nzValue="f">Femenino</label>
+        </nz-radio-group>
+      </nz-form-control>
+    </nz-form-item>
+  
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzRequired>Área</nz-form-label>
+      <nz-form-control [nzSpan]="6" nzErrorTip="Please write something here!">
+        <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Seleccina área" formControlName="area_id">
+          <nz-option nzLabel="Administracion" nzValue="1"></nz-option>
+          <nz-option nzLabel="Docencia" nzValue="2"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+  
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzRequired>Descripción</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzErrorTip="Please write something here!">
+        <textarea formControlName="descripcion" nz-input rows="2" placeholder="write any thing"></textarea>
+      </nz-form-control>
+    </nz-form-item>
+  
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzRequired></nz-form-label>
+      <nz-form-control [nzSpan]="12" nzErrorTip="Please write something here!">
+        <label nz-checkbox formControlName="boletin">Desea recibbir boletin informativo</label>
+      </nz-form-control>
+    </nz-form-item>
+  
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzRequired>Rol</nz-form-label>
+      <nz-form-control [nzSpan]="4" nzErrorTip="Please write something here!" *ngFor="let rol of rols; let i=index">
+        <label  >
+          <input type="checkbox" [value]="rol.id"  id="rol_id" name="rol_id"   formControlName="rol_id"  (change)="onChange($event)" >
+         {{rol.name}}
+        </label>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-control [nzOffset]="7" [nzSpan]="12">
+        <button nz-button nzType="primary" [disabled]="!validateForm.valid">Submit</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+
+  <br />
+  <br />
+
+    <h3 class="title is-3"> Lista de Empleados </h3>
+
+    <table class="table  is-bordered is-striped is-narrow is-hoverable">
+
+    <thead >
+       <tr class="has-background-primary-light">
+        <th><span class="icon is-small">
+            <i class="fa fa-user-tie"></i>
+          </span> Nombre</th>
+        <th><span class="icon is-small">
+            <i class="fa-regular fa-envelope"></i>
+          </span> Email</th>
+        <th><span class="icon is-small">
+            <i class="fa fa-venus-mars"></i>
+          </span> Sexo</th>
+        <th><span class="icon is-small">
+            <i class="fa-solid fa-layer-group"></i>
+          </span> Área</th>
+        <th><span class="icon is-small">
+            <i class="fa-regular fa-folder-open"></i>
+          </span> Boletín</th>
+        <th><span class="icon is-small">
+            <i class="fa-solid fa-trash-can"></i>
+          </span> Eliminar</th>
+        <th><span class="icon is-small">
+            <i class="fa-solid fa-pen-to-square"></i>
+          </span> Aactualizar</th>
+       </tr>
+  
+    </thead>
+  
+    <tbody>
+       <tr *ngFor="let user of empleados">
+         <td> {{user.nombre}}</td>
+         <td> {{user.email}}</td>
+         <td  ><span *ngIf="user.sexo=='m'">Hombre </span> <span *ngIf="user.sexo=='f'">Mujer </span> </td>
+         <td> {{user.area_id}}</td>
+         <td > <p *ngIf=" user.boletin "> Si </p> <p *ngIf=" !user.boletin ">No</p></td>
+         <td> <button class="button is-small is-danger is-outlined" (click)="removeUser(user.id)">
+            <span class="icon is-small">
+                <i class="fa-solid fa-trash-can"></i>
+              </span>
+            <span>Delete</span>
+
+          </button></td>
+         <td><button class="button is-small is-primary " routerLink="edit/{{user.id}}">
+          <span class="icon is-small">
+            <i class="fa-solid fa-pen-to-square"></i>
+            </span>
+          <span>Actualizar</span>
+
+        </button></td>
+
+       </tr>
+
+    </tbody>
+
+    </table>
+  </div>
+    </div>
